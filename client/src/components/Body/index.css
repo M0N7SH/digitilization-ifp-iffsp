@@ -1,0 +1,73 @@
+body{
+  overflow-x: hidden;
+}
+
+.projects {
+  margin-top: -50px; /* Adjust this value as needed */
+}
+
+.teext {
+  margin-top: -100px; /* Adjust this value as needed */
+}
+
+.chart-container {
+  display: grid;
+  grid-template-rows: 550px 550px 550px ;
+  grid-template-columns:550px 550px 550px ;
+  width: 180vh;
+  height: 80vh; /* Change height to auto */
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 0.2;
+  gap: 40px;
+}
+
+.chart-container1 {
+
+  grid-template-rows: 550px 550px 550px ;
+  grid-template-columns:550px 550px 550px ;
+  width: 180vh;
+  height: auto; /* Change height to auto */
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 0.2;
+  transition: opacity 1s, transform 1.5s ease; /* Add transition for opacity and transform */
+  opacity: 1; /* Initially set opacity to 0 */
+  transform: translateY(10%); /* Initially move it down */
+  gap: 40px;
+}
+
+.chart-container1.show {
+/* Set opacity to 1 when it's shown */
+  margin-left: 10px;
+  transform: translateY(-130px); /* Move it to its original position */
+}
+
+.chart-container.hide {
+  opacity: 0; /* Set opacity to 0 when it's hidden */
+  transition: opacity 1s; /* Add transition for opacity */
+}
+
+.chart-container.show{
+  margin-left: 10px;
+  opacity: 0.8;
+  transform:translateY(-20px);
+  transition: opacity 1s ease; 
+}
+
+.hide {
+  display: none; /* Hide the element */
+}
+
+.chart {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5); 
+  border-radius: 10px;
+  height: 630px;
+  padding: 15px;
+
+}
+
