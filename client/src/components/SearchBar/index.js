@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import Home from '../Home/index';
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 // New SearchBox component for suggestions
 const SearchBox = ({ handleSearch }) => {
@@ -12,7 +13,7 @@ const SearchBox = ({ handleSearch }) => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/projects");
+                const response = await axios.get(`${API_URL}/api/projects`);
                 setProjectNames(response.data.map(project => ({ id: project._id, name: project.project_name, guide: project.guides, amount: project.amount, Start_date: project.Start_date })));
             } catch (error) {
                 console.error("Error fetching projects:", error);
@@ -95,7 +96,7 @@ const SearchBar = () => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:3000/api/projects/${selectedProject.id}`, { guide });
+            const response = await axios.put(`${API_URL}/api/projects/${selectedProject.id}`, { guide });
             console.log("Guide updated:", response.data);
             // Update local state after successful update
             setGuide(guide);
@@ -112,7 +113,7 @@ const SearchBar = () => {
         }
     
         try {
-            const response = await axios.put(`http://localhost:3000/api/projects/${selectedProject.id}`, { amount: amt });
+            const response = await axios.put(`${API_URL}/api/projects/${selectedProject.id}`, { amount: amt });
             console.log("Amount updated:", response.data);
             // Update local state after successful update
             setAmt(response.data.amount); // Update local state with the response data
@@ -148,9 +149,9 @@ const SearchBar = () => {
             console.log("insert start")
             let response;
             if (guideEdit || amtEdit) { // Check if guide or amount has been edited
-                response = await axios.put(`http://localhost:3000/api/projects/:projectName`, { guide, amount: amt }); // Update guide and amount using PUT request
+                response = await axios.put(`${API_URL}/projects/:projectName`, { guide, amount: amt }); // Update guide and amount using PUT request
             }
-            response = await axios.post("http://localhost:3000/api/progress", progressData); // Insert progress using POST request
+            response = await axios.post(`${API_URL}/api/progress`, progressData); // Insert progress using POST request
             console.log("insert end")
             console.log(response.data);
             // Reset form after successful insert

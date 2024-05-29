@@ -7,7 +7,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { useNavigate } from "react-router-dom";
 import Table from "../ProjectDetails/index.jsx";
 import FacultyBody from '../FacultyBody/index.js';
-
+import { API_URL } from '../../config/index.js';
 
 const FacultyInputSec = () => {
     const [filteredProjects,setfilteredProjects] = useState();
@@ -25,7 +25,7 @@ const FacultyInputSec = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/faculty');
+                const response = await axios.get(`${API_URL}/api/faculty`);
                 const projects = response.data;
                 console.log(projects);
                 // Fetch unique categories

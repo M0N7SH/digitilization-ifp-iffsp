@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './index'; // Import the Tanstack table component
 import './FullDetails.css'; // Import CSS file for styling
+import { API_URL } from '../../config';
 
 function FacultyDetails() {
     const [projects, setProjects] = useState([]);
@@ -11,7 +12,7 @@ function FacultyDetails() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/faculty");
+                const response = await axios.get(`${API_URL}/api/faculty`);
                 setProjects(response.data);
             } catch (error) {
                 setError("Error fetching projects");

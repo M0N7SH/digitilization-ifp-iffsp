@@ -4,7 +4,7 @@ import { Pie, Bar } from "react-chartjs-2";
 import './index.css';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-
+import { API_URL } from "../../config";
 Chart.register(ChartDataLabels);
 
 function FacultyBody({ filters }) {
@@ -18,7 +18,7 @@ function FacultyBody({ filters }) {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/faculty");
+        const response = await axios.get(`${API_URL}/api/faculty`);
         console.log(response.data); // Log the response data
         setProjects(response.data);
       } catch (error) {

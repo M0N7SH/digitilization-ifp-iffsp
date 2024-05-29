@@ -4,7 +4,7 @@ import { Pie, Bar } from "react-chartjs-2";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
 import './index.css';
-
+import { API_URL } from "../../config";
 // Register ChartDataLabels plugin
 Chart.register(ChartDataLabels);
 
@@ -21,7 +21,7 @@ function Body({ filters }) {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/projects");
+        const response = await axios.get(`${API_URL}/api/projects`);
         console.log(response.data); // Log the response data
         setProjects(response.data);
       } catch (error) {

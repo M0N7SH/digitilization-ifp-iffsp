@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios'
-
+import { API_URL } from "../config";
 export default function TestUpload() {
   const [file, setFile] = React.useState();
 
@@ -16,7 +16,7 @@ export default function TestUpload() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/file-upload",
+        `${API_URL}/file-upload`,
         formData
       );
       console.log(response.data);

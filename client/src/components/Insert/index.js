@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Insert.css';
-
+import { API_URL } from '../../config';
 function Insert() {
   const [projectName, setProjectName] = useState('');
   const [students, setStudents] = useState(['']);
@@ -28,7 +28,7 @@ function Insert() {
     };
     
     try {
-      const response = await axios.post('http://localhost:3000/api/projects', formData);
+      const response = await axios.post(`${API_URL}/api/projects`, formData);
       console.log(response.data);
       clearForm();
     } catch (error) {

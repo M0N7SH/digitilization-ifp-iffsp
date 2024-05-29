@@ -225,6 +225,8 @@ app.get('/file/:fileName',async(req,res)=>{
 
 })
 
-app.listen(3000, async () => {
-  console.log("Server connected...");
+const PORT = 3001
+
+app.listen(PORT, async () => {
+  console.log(`Server connected @ ${PORT}...`);
 });

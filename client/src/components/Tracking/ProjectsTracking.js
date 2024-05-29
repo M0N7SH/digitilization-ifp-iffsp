@@ -3,7 +3,7 @@ import ProgressBox from './ProgressBox';
 import { Popup } from 'reactjs-popup';
 import './ProjectsTracking.css';
 import axios from 'axios';
-
+import { API_URL } from '../../config';
 function ProjectsTracking() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [UserData, setUserData] = useState([]);
@@ -11,7 +11,7 @@ function ProjectsTracking() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/projects");
+                const response = await axios.get(`${API_URL}/api/projects`);
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching projects:", error);

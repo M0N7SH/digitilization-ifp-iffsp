@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { API_URL } from '../../config';
 const EmailList = ({ emails }) => {
     const [generatedPasswords, setGeneratedPasswords] = useState({});
 
@@ -10,7 +10,7 @@ const EmailList = ({ emails }) => {
     const generatePassword = async (email) => {
         try {
             const password = generateRandomPassword(); // Generate random password
-            const response = await axios.post('http://localhost:3000/generate-password', { username: email, password });
+            const response = await axios.post('${API_URL}/generate-password', { username: email, password });
             const { username, generatedPassword } = response.data;
             setGeneratedPasswords({ ...generatedPasswords, [username]: generatedPassword });
         } catch (error) {
