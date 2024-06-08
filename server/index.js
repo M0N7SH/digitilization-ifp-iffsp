@@ -13,29 +13,65 @@ const crypto = require('crypto')
 const fs = require('fs')
 const busboy = require('busboy')
 
-mongoose.connect('mongodb+srv://Mathavaroopan:Mathavaroopan@cluster0.oh7gbee.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb+srv://mathavaroopan:Mathavaroopan@cluster0.e3ob10i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to MongoDB");
+}).catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
 });
 
+// const insertProjects = async () => {
+//   try {
+//     let projects = [];
+//     for(let d of data){
+//       let project = {};
+//       project.project_name = d.project_name;
+//       project.Students = d.students;
+//       project.guides = d.guides;
+//       project.amount = d.amount;
+//       project.duration = d.duration;
+//       project.Start_date = d.start_year;
+//       project.category = d.category;
+//       project.progress = [
+//         { category1: 0, category2: 0, category3: 0}
+//       ];
+//       project.patents = [];
+//       project.research_papers = [];
+//       project.ppts = [];
+//       projects.push(project);
+//     }
+//     await faculty.insertMany(projects);
+//     console.log("Data inserted successfully");
+//   } catch (error) {
+//     console.error("Error inserting data:", error);
+//   }
+// };
 
+// // insertProjects();
 
 app.post('/api/projects', async (req, res) => {
     try {
 
-      let { project_name, Students, year, guides, amount, duration, Start_date, category, progress } = req.body;
-      year = Math.floor(Math.random() * 4) + 1;
-      console.log(Students);
+      let { project_name, Students, guides, amount, duration, Start_date, category } = req.body;
+      progress = [{ category1: 0, category2: 0, category3: 0}];
+      patents = [];
+      research_papers = [];
+      ppts = [];
+      Start_date = Start_date;
       const newProject = new student({
         project_name,
         Students,
-        year,
         guides,
         amount,
         duration,
         Start_date,
         category,
-        progress
+        progress,
+        patents,
+        research_papers,
+        ppts
       });
 
       await newProject.save();
@@ -49,6 +85,40 @@ app.post('/api/projects', async (req, res) => {
       console.error('Error saving project:', error);
       res.status(500).json({ error: 'Failed to save project' });
     }
+});
+
+app.post('/api/projects/faculty', async (req, res) => {
+  try {
+
+    let { project_name, guides, amount, duration, Start_date, category } = req.body;
+    progress = [{ category1: 0, category2: 0, category3: 0}];
+    patents = [];
+    research_papers = [];
+    ppts = [];
+    const newProject = new faculty({
+      project_name,
+      guides,
+      amount,
+      duration,
+      Start_date,
+      category,
+      progress,
+      patents,
+      research_papers,
+      ppts
+    });
+
+    await newProject.save();
+    
+    // Respond with a success message
+    res.status(201).json({ message: 'Project created successfully' });
+    console.log(newProject);
+    console.log("Insert successful")
+  } catch (error) {
+    // If an error occurs, respond with an error message
+    console.error('Error saving project:', error);
+    res.status(500).json({ error: 'Failed to save project' });
+  }
 });
 
 app.get('/api/projects', async (req, res) => {
@@ -106,6 +176,26 @@ app.post('/api/progress', async (req, res) => {
       console.log(direction);
       console.log(satisfaction);
       const project = await student.findById(projectId);
+      console.log(project);
+      if (!project) {
+          return res.status(404).json({ error: 'Project not found' });
+      }
+      project.progress.push({ direction, resource_utilization, satisfaction, comments });
+      await project.save();
+      res.status(201).json({ message: 'Progress inserted successfully', project });
+  } catch (error) {
+      console.error('Error inserting progress:', error);
+      res.status(500).json({ error: 'Failed to insert progress' });
+  }
+});
+
+app.post('/api/progress-faculty', async (req, res) => {
+  try {
+      console.log(req.body);
+      const { projectId, direction, resource_utilization, satisfaction, comments } = req.body;
+      console.log(direction);
+      console.log(satisfaction);
+      const project = await faculty.findById(projectId);
       console.log(project);
       if (!project) {
           return res.status(404).json({ error: 'Project not found' });

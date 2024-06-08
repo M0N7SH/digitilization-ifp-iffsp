@@ -168,7 +168,7 @@ const InputSec = () => {
 
             <div className='input'>
 
-                <div className='input-field'>
+                <div className='input-field' style={{border: "none"}}>
                     <label className="label" htmlFor="domain">Domain:</label>
                     <select className='drop-input' name="domain" id="domain" onChange={handleFilterChange}>
                         <option value="All">All</option>

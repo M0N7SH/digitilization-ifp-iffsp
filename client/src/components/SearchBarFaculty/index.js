@@ -12,7 +12,7 @@ const SearchBox = ({ handleSearch }) => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get(`${API_URL}/api/projects`);
+                const response = await axios.get(`${API_URL}/api/faculty`);
                 setProjectNames(response.data.map(project => ({
                     id: project._id,
                     name: project.project_name,
@@ -21,6 +21,8 @@ const SearchBox = ({ handleSearch }) => {
                     Start_date: project.Start_date,
                     Students: project.Students
                 })));
+                console.log("Hello")
+                console.log(projectNames);
             } catch (error) {
                 console.error("Error fetching projects:", error);
             }
@@ -65,7 +67,7 @@ const SearchBox = ({ handleSearch }) => {
     );
 };
 
-const SearchBar = () => {
+const SearchBoxFaculty = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [directionMarks, setDirectionMarks] = useState(0);
     const [resourceMarks, setResourceMarks] = useState(0);
@@ -90,7 +92,7 @@ const SearchBar = () => {
         };
 
         try {
-            const response = await axios.post(`${API_URL}/api/progress`, progressData);
+            const response = await axios.post(`${API_URL}/api/progress-faculty`, progressData);
             setSearchResult(response.data);
             setSelectedProject(null);
             setDirectionMarks(0);
@@ -166,4 +168,4 @@ const SearchBar = () => {
     );
 };
 
-export default SearchBar;
+export default SearchBoxFaculty;

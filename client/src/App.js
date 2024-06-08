@@ -26,6 +26,8 @@ import EmailList from "./components/Login/EmailList.js";
 import TestUpload from "./components/TestUpload.js";
 import FacultyInputSec from "./components/FacultyInputSec/index.js";
 import FacultyDetails from "./components/FacultyDetails/FacultyDetails.js";
+import InsertFaculty from "./components/InsertFaculty/InsertFaculty.js";
+import SearchBoxFaculty from "./components/SearchBarFaculty/index.js";
 
 const App = () => {
   //New Code
@@ -145,26 +147,21 @@ const App = () => {
             />
           }
         />
-        {isLoggedIn ? (
-          <>
+        <>
            <Route path="/analytics" element={<div><Home /><InputSec /></div>} />
           <Route path="/home" element={<div><Home /><br /> <FullDetails /></div>} />
           <Route path="/assign-reviewers" element={<div><Home /><br /><EmailList emails={emails} /></div>} />
           <Route path="/tracking" element={<div><Home /><br /><Insert /></div>} />
           <Route path="/project-details/:projectName" element={<div><Home /><ProjectDetails /></div>} />
           <Route path="/track-progress" element={<SearchBar />} />
+          <Route path="/track-progress-faculty" element={<SearchBoxFaculty />} />
           <Route path="/project-details" element={<ProjectDetails />} />
           <Route path="/test" element={<TestUpload />} />
           <Route path="/faculty" element={<div><Home /><FacultyInputSec /></div>} />
           <Route path="/facultyDetails" element={<div><Home /><FacultyDetails /></div>} />
+          <Route path="/insert_student" element={<div><Home /><Insert /></div>} />
+          <Route path="/insert_faculty" element={<div><Home /><InsertFaculty /></div>} />
           </>
-        ) : (
-          <Route
-            path="/*"
-            element={<Navigate to="/" replace={true} />}
-          />
-          
-        )}
       </Routes>
     </Router> 
   );

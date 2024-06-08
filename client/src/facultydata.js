@@ -152,3 +152,5 @@ const data = [
         category: "IOT, web services, cloud ontology"
       }
 ]
+
+console.log(data.length);

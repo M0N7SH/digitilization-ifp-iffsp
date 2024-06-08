@@ -26,9 +26,9 @@
   }
 
 .input-field{
-margin:0px 0px 10px;
-padding:8px;
-border: none;
+    margin:0px 0px 10px;
+    padding:8px;
+    border: none;
 }
 .details {
     display: grid;

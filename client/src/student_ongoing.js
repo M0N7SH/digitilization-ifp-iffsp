@@ -190,4 +190,4 @@ const data = [
     }
 ];
 
-module.exports = projects;
+console.log(data.length);

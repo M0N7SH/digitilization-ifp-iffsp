@@ -250,7 +250,7 @@ function Body({ filters }) {
     <div className="big" style={{ marginTop: '100px' }}>
       <div className="main">
         {showCharts && (
-          <div className={`chart-container ${showCharts ? 'show' : 'hide'}`} style={{ display: "flex", justifyContent: "space-around", marginLeft: '1px', gap: '20px' }}>
+          <div className={`chart-container ${showCharts ? 'show' : 'hide'}`} style={{ display: "flex", justifyContent: "space-around", marginLeft: '75px', gap: '20px'}}>
             <section>
               <div className="chart" style={{ width: "450px", height: "550px" }}>
                 <h2>Projects</h2>
@@ -271,21 +271,21 @@ function Body({ filters }) {
             </section>
           </div>
         )}
-        <div className={`chart-container1 ${!showCharts ? 'show' : ''}`} style={{ display: "flex", justifyContent: "space-between", marginTop: '50px', marginLeft: '10px' }}>
+        <div className={`chart-container1 ${!showCharts ? 'show' : ''}`} style={{ display: "flex", justifyContent: "space-between", marginTop: '100px', marginLeft: '75px'}}>
           <section>
-            <div className="chart" style={{ width: "450px", height: "450px" }}>
+            <div className="chart" style={{ width: "450px", height: "450px" , marginTop: "100px"}}>
               <h2>No. of Projects per Year</h2>
               <Bar data={projectsPerYearChartData} options={barChartOptions} />
             </div>
           </section>
           <section>
-            <div className="chart" style={{ width: "450px", height: "450px" }}>
+            <div className="chart" style={{ width: "450px", height: "450px" , marginTop: "100px" }}>
               <h2>No. of Students</h2>
               <Bar data={studentsPerYearChartData} options={barChartOptions} />
             </div>
           </section>
           <section>
-            <div className="chart" style={{ width: "450px", height: "450px" }}>
+            <div className="chart" style={{ width: "450px", height: "450px" , marginTop: "100px" }}>
               <h2>Amount</h2>
               <Bar data={amountsPerYearChartData} options={barChartOptions} />
             </div>

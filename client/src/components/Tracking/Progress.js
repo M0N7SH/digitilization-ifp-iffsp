@@ -3,7 +3,7 @@ import LineChart from "./LineChart";
 
 function Progress({ project }) {
   const [userData, setUserData] = useState(null);
-
+  console.log(project.progress);
   useEffect(() => {
     if (project) {
       let sum = 0;
@@ -12,7 +12,8 @@ function Progress({ project }) {
         datasets: [
           {
             label: "Progress",
-            data: project.progress.map((data) => {
+            data: project.progress.map((data, index) => {
+              if(index == 0) return 0;
               sum += data.direction + data.resource_utilization + data.satisfaction;
               return sum;
             }),

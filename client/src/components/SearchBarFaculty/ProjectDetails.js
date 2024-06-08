@@ -1,12 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "./ProjectDetails.css";
 import { API_URL } from "../../config";
-import ProgressBox from '../Tracking/ProgressBox';
-import Progress from "../Tracking/Progress";
-function ProjectDetails() {
-  const { projectName } = useParams();
+function ProjectDetails(props) {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,21 +24,17 @@ function ProjectDetails() {
   }, []);
 
   // Find the project with the matching project name
-  const project = projects.find(
-    (project) => project.project_name === projectName
-  );
-  console.log(projectName);
+  const project = props.project;
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   if (!project) {
-    return <div>Project not found!</div>;
+    return <div>Search for a project...</div>;
   }
 
   return (
     <div className="container">
-      <div>
       <div className="project-title">
         <h2>{project.project_name}</h2>
       </div>
@@ -75,10 +67,6 @@ function ProjectDetails() {
             </ul>
           </div>
         )}
-      </div>
-      </div>
-      <div>
-        <Progress project={project}/>
       </div>
     </div>
 

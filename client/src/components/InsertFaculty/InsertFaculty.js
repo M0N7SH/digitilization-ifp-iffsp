@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Insert.css';
+import './InsertFaculty.css';
 import { API_URL } from '../../config';
-function Insert() {
+function InsertFaculty() {
   const [projectName, setProjectName] = useState('');
   const [students, setStudents] = useState(['']);
   const [guides, setGuides] = useState(['']);
@@ -28,7 +28,7 @@ function Insert() {
     };
     
     try {
-      const response = await axios.post(`${API_URL}/api/projects`, formData);
+      const response = await axios.post(`${API_URL}/api/projects/faculty`, formData);
       console.log(response.data);
       clearForm();
     } catch (error) {
@@ -57,57 +57,23 @@ function Insert() {
   };
 
   return (
-    <div className="ifp-insert-container">
+    <div className="insert-container">
       <form onSubmit={handleSubmit}>
         <label className="form-label">Project Name:</label>
         <input
           type="text"
-          className="ifp-input-field"
+          className="iffp-input-field"
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
           required
         />
-        
-        <label className="form-label">Students:</label>
-        {students.map((student, index) => (
-          <div key={index}>
-            <input
-              type="text"
-              className="ifp-input-field"
-              value={student}
-              onChange={(e) => {
-                const updatedStudents = [...students];
-                updatedStudents[index] = e.target.value;
-                setStudents(updatedStudents);
-              }}
-              required
-            />
-          </div>
-        ))}
-        <button type="button" className="add-button" onClick={addStudentField}>Add Student</button>
-        <br />
-        <br></br>
-        <label className="form-label">Year:</label>
-        <select
-          className="dropdown-input" // Assuming this is your custom styling class for dropdown inputs
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-          required
-        >
-          <option value="">Select Year</option>
-          <option value="year1">I</option>
-          <option value="year2">II</option>
-          <option value="year3">III</option>
-          <option value="year4">IV</option>
-        </select>
-        <br></br>
         <br></br>
         <label className="form-label">Guides:</label>
         {guides.map((guide, index) => (
           <div key={index}>
             <input
               type="text"
-              className="ifp-input-field"
+              className="iffp-input-field"
               value={guide}
               onChange={(e) => {
                 const updatedGuides = [...guides];
@@ -123,7 +89,7 @@ function Insert() {
         <label className="form-label">Amount:</label>
         <input
           type="number"
-          className="ifp-input-field"
+          className="iffp-input-field"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
@@ -132,7 +98,7 @@ function Insert() {
         <label className="form-label">Duration (in months):</label>
         <input
           type="number"
-          className="ifp-input-field"
+          className="iffp-input-field"
           value={duration}
           onChange={(e) => setDuration(e.target.value)}
           required
@@ -141,7 +107,7 @@ function Insert() {
         <label className="form-label">Start Year:</label>
         <input
           type="number"
-          className="ifp-input-field"
+          className="iffp-input-field"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
           required
@@ -150,7 +116,7 @@ function Insert() {
         <label className="form-label">Category:</label>
         <input
           type="text"
-          className="ifp-input-field"
+          className="iffp-input-field"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
@@ -162,4 +128,4 @@ function Insert() {
   );
 }
 
-export default Insert;
+export default InsertFaculty;

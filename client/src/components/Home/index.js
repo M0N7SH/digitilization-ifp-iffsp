@@ -14,6 +14,8 @@ const Home = () => {
                 <h1 onClick={()=>navigate('/analytics')}>IFP</h1>
                 <h1 onClick={()=>navigate('/faculty')}>IFFP</h1>
                 <h1 onClick={()=>navigate('/facultyDetails')}>Faculty</h1>
+                <h1 onClick={()=>navigate('/insert_student')}>Add IFP</h1>
+                <h1 onClick={()=>navigate('/insert_faculty')}>Add IFFP</h1>
                 <img className='nav-img' src={wantImage} alt="noimage"/>
             </nav>
         </div>

@@ -25,6 +25,22 @@ const FacultySchema = new mongoose.Schema({
         type: String,
         required:true,
         enum: ['AI in healthcare', 'Computer vision', 'Micro & Nano electronics', 'Network and security', 'speech language & text processing', 'IOT, web services, cloud ontology']
+    },
+    progress: {
+        type: Array,
+        required:true
+    },
+    patents: {
+        type: Array,
+        required: true
+    },
+    research_papers: {
+        type: Array,
+        required: true
+    },
+    ppts: {
+        type: Array,
+        required: true
     }
 });
 

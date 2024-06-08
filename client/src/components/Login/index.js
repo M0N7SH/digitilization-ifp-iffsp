@@ -1,199 +1,86 @@
 import React, { useState } from "react";
-import "./index.css";
+import { Container, Button, TextField, Box, FormControl, InputLabel, Select, MenuItem, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import './index.css'; // Import the CSS file
 
-function AdminLogin({ authenticateUser }) {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    if (username === "admin" && password === "admin123") {
-      authenticateUser();
-      navigate("/home");
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="login-page">
-        <form className="login-form" onSubmit={onSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter your username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-function TeamLeaderLogin({ authenticateUser }) {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    if (username === "teamleader" && password === "team123") {
-      authenticateUser();
-      navigate("/home");
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="login-page">
-        <form className="login-form" onSubmit={onSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter your username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-function ReviewerLogin({ authenticateUser }) {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    if (username === "reviewer" && password === "review123") {
-      authenticateUser();
-      navigate("/track-progress");
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="login-page">
-        <form className="login-form" onSubmit={onSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter your username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-function Login({ authenticateUser }) {
+function Login() {
   const [loginType, setLoginType] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = (type) => {
     setLoginType(type);
   };
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(loginType);
+    console.log(username);
+    console.log(password);
+    if (loginType === "admin" && username === "research_admin@it.ssn.edu.in" && password === "Admin@1234") {
+      navigate("/home");
+    } else if (loginType === "ifp-review" && username === "ifp-review" && password === "ifp-review") {
+      navigate("/track-progress");
+    } else if (loginType === "iffp-review" && username === "iffp-review" && password === "iffp-review") {
+      navigate("/track-progress-faculty");
+    } else {
+      alert("Invalid credentials. Please try again.");
+    }
+  };
+
   return (
-    <div className="container1">
-      <div className="login-page1">
-        <div className="button-box">
-          <button
-            id="admin"
-            style={{ backgroundColor: loginType === "admin" ? "orange" : "rgb(26, 195, 35)" }}
-            className="loginbutton"
-            onClick={() => handleLogin("admin")}
-          >
-            Admin Login
-          </button>
-          <button
-            id="teamleader"
-            style={{ backgroundColor: loginType === "teamleader" ? "orange" : "rgb(26, 195, 35)" }}
-            className="loginbutton"
-            onClick={() => handleLogin("teamleader")}
-          >
-            Team Leader Login
-          </button>
-          <button
-            id="reviewer"
-            style={{ backgroundColor: loginType === "reviewer" ? "orange" : "rgb(26, 195, 35)" }}
-            className="loginbutton"
-            onClick={() => handleLogin("reviewer")}
-          >
-            Reviewer Login
-          </button>
-        </div>
-        {loginType === "admin" && <AdminLogin authenticateUser={authenticateUser} />}
-        {loginType === "teamleader" && <TeamLeaderLogin authenticateUser={authenticateUser} />}
-        {loginType === "reviewer" && <ReviewerLogin authenticateUser={authenticateUser} />}
+    <div className="login">
+      <div className="login-left">
+        <img src="ssn.jpg" alt="Sign In" className="login-image" />
+      </div>
+      <div className="login-right">
+        <Box component="form" onSubmit={onSubmit} sx={{ mt: 1, width: "100%", maxWidth: "400px" }}>
+          <FormControl fullWidth sx={{ mt: 2 }}>
+            <InputLabel id="login-type-label">Login Type</InputLabel>
+            <Select
+              labelId="login-type-label"
+              id="login-type"
+              value={loginType}
+              label="Login Type"
+              onChange={(e) => handleLogin(e.target.value)}
+            >
+              <MenuItem value="admin">Admin Login</MenuItem>
+              <MenuItem value="ifp-review">IFP Review Login</MenuItem>
+              <MenuItem value="iffp-review">IFFP Review Login</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            Submit
+          </Button>
+        </Box>
       </div>
     </div>
   );
 }
 
 export default Login;
-
