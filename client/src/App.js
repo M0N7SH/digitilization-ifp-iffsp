@@ -28,6 +28,8 @@ import FacultyInputSec from "./components/FacultyInputSec/index.js";
 import FacultyDetails from "./components/FacultyDetails/FacultyDetails.js";
 import InsertFaculty from "./components/InsertFaculty/InsertFaculty.js";
 import SearchBoxFaculty from "./components/SearchBarFaculty/index.js";
+import FacultyHome from "./components/FacultyHome/index.js";
+import ProjectDetailsFaculty from "./components/FacultyDetails/ProjectDetailsFaculty.js";
 
 const App = () => {
   //New Code
@@ -153,14 +155,15 @@ const App = () => {
           <Route path="/assign-reviewers" element={<div><Home /><br /><EmailList emails={emails} /></div>} />
           <Route path="/tracking" element={<div><Home /><br /><Insert /></div>} />
           <Route path="/project-details/:projectName" element={<div><Home /><ProjectDetails /></div>} />
+          <Route path="/project-details-faculty/:projectName" element={<div><FacultyHome /><ProjectDetailsFaculty /></div>} />
           <Route path="/track-progress" element={<SearchBar />} />
           <Route path="/track-progress-faculty" element={<SearchBoxFaculty />} />
           <Route path="/project-details" element={<ProjectDetails />} />
           <Route path="/test" element={<TestUpload />} />
-          <Route path="/faculty" element={<div><Home /><FacultyInputSec /></div>} />
-          <Route path="/facultyDetails" element={<div><Home /><FacultyDetails /></div>} />
+          <Route path="/faculty" element={<div><FacultyHome /><FacultyInputSec /></div>} />
+          <Route path="/facultyDetails" element={<div><FacultyHome /><FacultyDetails /></div>} />
           <Route path="/insert_student" element={<div><Home /><Insert /></div>} />
-          <Route path="/insert_faculty" element={<div><Home /><InsertFaculty /></div>} />
+          <Route path="/insert_faculty" element={<div><FacultyHome /><InsertFaculty /></div>} />
           </>
       </Routes>
     </Router> 

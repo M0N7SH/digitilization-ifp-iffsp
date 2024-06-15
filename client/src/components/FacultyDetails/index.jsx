@@ -95,7 +95,7 @@ export default function Table({ columns, projects }) {
           {column.accessor === 'project_name' ? (
             // If it's the project name, wrap it in an anchor tag
           <Link
-            to={`/project-details/${encodeURIComponent(project.project_name)}`}
+            to={`/project-details-faculty/${encodeURIComponent(project.project_name)}`}
             style={{
               textDecoration: 'none',
               color: '#040609',

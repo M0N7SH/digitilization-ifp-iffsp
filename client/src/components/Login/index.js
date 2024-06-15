@@ -18,10 +18,12 @@ function Login() {
     console.log(loginType);
     console.log(username);
     console.log(password);
-    if (loginType === "admin" && username === "research_admin@it.ssn.edu.in" && password === "Admin@1234") {
+    if (loginType === "ifp-admin" && username === "ifp-admin" && password === "ifp-admin") {
       navigate("/home");
     } else if (loginType === "ifp-review" && username === "ifp-review" && password === "ifp-review") {
       navigate("/track-progress");
+    } else if (loginType === "iffp-admin" && username === "iffp-admin" && password === "iffp-admin") {
+      navigate("/faculty");
     } else if (loginType === "iffp-review" && username === "iffp-review" && password === "iffp-review") {
       navigate("/track-progress-faculty");
     } else {
@@ -45,10 +47,11 @@ function Login() {
               label="Login Type"
               onChange={(e) => handleLogin(e.target.value)}
             >
-              <MenuItem value="admin">Admin Login</MenuItem>
+              <MenuItem value="ifp-admin">IFP Admin Login</MenuItem>
               <MenuItem value="ifp-review">IFP Review Login</MenuItem>
+              <MenuItem value="iffp-admin">IFFP Admin Login</MenuItem>
               <MenuItem value="iffp-review">IFFP Review Login</MenuItem>
-            </Select>
+              </Select>
           </FormControl>
           <TextField
             margin="normal"
